@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.css-1qb8o-MuiToggleButtonGroup-root{
+  display: flex !important;
+}
+.iconButton:hover{
+  background-color: #c5c5c5 !important;
+  box-shadow: 0px 7px 7px rgba(0,0,0,0.4);
+}
+
+@media (max-width:767px) {
+  .css-1fdcbwl-MuiTypography-root{
+    font-size: 2.5rem !important;
+  }
+  .css-1heabyg-MuiStack-root>:not(style)~:not(style){
+    margin-left: 10px !important;
+  }
+  .css-53g0n7-MuiButtonBase-root-MuiIconButton-root{
+    font-size: 1rem !important;
+    padding: 5px !important;
+    .css-1umw9bq-MuiSvgIcon-root{
+      width: 0.8em !important;
+      height: 0.8em !important;
+    }
+  }
+}
