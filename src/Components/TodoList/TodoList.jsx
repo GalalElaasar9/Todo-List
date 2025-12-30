@@ -97,7 +97,7 @@ export default function TodoList() {
             exclusive          
             value={displayTodosType}  
             aria-label="text alignment"
-            className="justify-center items-center ltr my-5"
+            className="!justify-center items-center ltr my-5"
             onChange={changeDisplayedType}
             color='primary'
           >
