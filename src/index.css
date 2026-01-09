@@ -13,6 +13,9 @@
 }
 
 @media (max-width:767px) {
+  .css-1e6vq8h{
+    font-size: 25px;
+  }
   .css-1fdcbwl-MuiTypography-root{
     font-size: 2.5rem !important;
   }
