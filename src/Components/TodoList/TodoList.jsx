@@ -13,6 +13,7 @@ import { useContext, useEffect, useState } from 'react';
 import { TodosContext } from '../../Context/TodosContext';
 import {v4 as uuidv4} from 'uuid';
 import toast from 'react-hot-toast';
+// import { FaFilePen } from "react-icons";
 
 
 export default function TodoList() {
@@ -84,12 +85,49 @@ export default function TodoList() {
     setDetailsInput('')
   }
 
+  const rtlTextField = {
+    direction: "rtl",
+
+    "& input": {
+      textAlign: "right",
+    },
+
+    /* إطار الـ outlined نفسه */
+    "& .MuiOutlinedInput-root": {
+      direction: "rtl",
+    },
+
+    /* تحريك الـ notch ناحية اليمين */
+    "& .MuiOutlinedInput-notchedOutline": {
+      textAlign: "right",
+    },
+
+    /* التحكم في الـ legend (الجزء اللي بيختفي) */
+    "& .MuiOutlinedInput-notchedOutline legend": {
+      textAlign: "right",
+      marginRight: "14px",
+      marginLeft: "unset",
+      transformOrigin: "right",
+    },
+
+    /* اللابل */
+    "& .MuiInputLabel-root": {
+      right: 28,
+      left: "auto",
+      transformOrigin: "top right",
+    },
+
+    "& .MuiInputLabel-root.MuiInputLabel-shrink": {
+      transform: "translate(0, -9px) scale(0.75)",
+    },
+  }
+
   return (
     <Container maxWidth="md">
       {todos.length === 0 ? <Card sx={{ minWidth: 275 , maxHeight:"650px" , height:"100%" , overflow:"auto"  }}>
         <CardContent>
           <Typography variant='h2' className='title text-center !mb-4' style={{ fontWeight:"400" }}>
-            مهامى اليومية
+            مهامى اليومية 
           </Typography>
           <Divider/>
           {/* Filter Buttons */}
@@ -118,10 +156,11 @@ export default function TodoList() {
           {/* Start Input + Add Button */}
           <Grid container spacing={2} direction={'row-reverse'} className="inputsFeilds">
             <Grid size={4}>
-              <TextField value={titleInput} onChange={(e)=>(setTitleInput(e.target.value))} id="outlined-basic" label="عنوان المهمه" variant="outlined" className='w-[100%]'/>
+              <TextField value={titleInput} onChange={(e)=>(setTitleInput(e.target.value))} id="outlined-basic" label="عنوان المهمه" variant="outlined" className='w-[100%]' sx={rtlTextField}
+/>
             </Grid>
             <Grid size={4}>
-              <TextField value={detailsInput} onChange={(e)=>(setDetailsInput(e.target.value))} id="outlined-basic" label="تفاصيل المهمه" variant="outlined" className='w-[100%]'/>
+              <TextField value={detailsInput} onChange={(e)=>(setDetailsInput(e.target.value))} id="outlined-basic" label="تفاصيل المهمه" variant="outlined" className='w-[100%]' sx={rtlTextField}/>
             </Grid>
             <Grid size={4}>
               <Button onClick={()=>{handleAddClick()}} variant="contained" sx={{ width:"100%" , height:"100%" }} className={`${titleInput.length === 0 ? 'opacity-30 pointer-events-none' : 'opacity-100'} ${detailsInput.length === 0 ? 'opacity-30 pointer-events-none' : 'opacity-100'}`}>إضافة</Button>

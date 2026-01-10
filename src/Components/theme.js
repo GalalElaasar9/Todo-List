@@ -10,6 +10,7 @@ const theme =
         main:"#dd2c00"
       }
     }
+      // direction: "rtl",
 })
 
 
