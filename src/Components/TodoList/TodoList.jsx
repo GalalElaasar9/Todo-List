@@ -121,7 +121,6 @@ export default function TodoList() {
       transform: "translate(0, -9px) scale(0.75)",
     }
   }
-
   return (
     <Container maxWidth="md">
       {todos.length === 0 ? <Card sx={{ minWidth: 275 , maxHeight:"650px" , height:"100%" , overflow:"auto"  }}>
