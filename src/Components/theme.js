@@ -9,8 +9,8 @@ const theme =
       primary:{
         main:"#dd2c00"
       }
-    }
-      // direction: "rtl",
+    },
+    // direction: "rtl",
 })
 
 

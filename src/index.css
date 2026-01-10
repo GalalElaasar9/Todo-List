@@ -13,10 +13,8 @@
 }
 
 
-
 @media (max-width:767px) {
   .inputsFeilds {
-    /* background-color: red; */
    display: grid !important;
     grid-auto-flow: row !important;
     div{
