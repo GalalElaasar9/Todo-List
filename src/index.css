@@ -14,15 +14,18 @@
 
 
 
-.inputsFeilds {
-  div{
-    width: 100%;
-    &:label{
-      text-align: right;
+@media (max-width:767px) {
+  .inputsFeilds {
+    /* background-color: red; */
+   display: grid !important;
+    grid-auto-flow: row !important;
+    div{
+      width: 100%;
+      &:label{
+        text-align: right;
+      }
     }
   }
-}
-@media (max-width:767px) {
   .css-1e6vq8h{
     font-size: 30px !important;
   }
