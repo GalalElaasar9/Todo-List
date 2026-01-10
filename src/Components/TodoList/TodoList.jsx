@@ -84,8 +84,8 @@ export default function TodoList() {
     setTitleInput('')
     setDetailsInput('')
   }
-  
-  const rtl = {
+
+  const rtlTextField = {
     direction: "rtl",
 
     "& input": {
@@ -119,8 +119,7 @@ export default function TodoList() {
 
     "& .MuiInputLabel-root.MuiInputLabel-shrink": {
       transform: "translate(0, -9px) scale(0.75)",
-    },
-  
+    }
   }
 
   return (
@@ -155,19 +154,19 @@ export default function TodoList() {
             <Alert severity="error" className='mb-3 justify-center flex-row-reverse gap-2'>لا يوجد مهام مضافة حتى الآن</Alert>
           {/* Alert No assignments */}
           {/* Start Input + Add Button */}
-          <Grid container spacing={2} direction={'row-reverse'} className="inputsFeilds">
-            <Grid size={4}>
-              <TextField value={titleInput} onChange={(e)=>(setTitleInput(e.target.value))} id="outlined-basic" label="عنوان المهمه" variant="outlined" className='w-[100%]'   
-  sx={rtl}
-/>
+          <div className="inputsFeilds">
+            <Grid container spacing={2} direction={'row-reverse'} >
+              <Grid size={4}>
+                <TextField value={titleInput} onChange={(e)=>(setTitleInput(e.target.value))} id="outlined-basic" label="عنوان المهمه" variant="outlined" className='w-[100%]' sx={rtlTextField} />
+              </Grid>
+              <Grid size={4}>
+                <TextField value={detailsInput} onChange={(e)=>(setDetailsInput(e.target.value))} id="outlined-basic" label="تفاصيل المهمه" variant="outlined" className='w-[100%]' sx={rtlTextField} />
+              </Grid>
+              <Grid size={4}>
+                <Button onClick={()=>{handleAddClick()}} variant="contained" sx={{ width:"100%" , height:"100%" }} className={`${titleInput.length === 0 ? 'opacity-30 pointer-events-none' : 'opacity-100'} ${detailsInput.length === 0 ? 'opacity-30 pointer-events-none' : 'opacity-100'}`}>إضافة</Button>
+              </Grid>
             </Grid>
-            <Grid size={4}>
-              <TextField value={detailsInput} onChange={(e)=>(setDetailsInput(e.target.value))} id="outlined-basic" label="تفاصيل المهمه" variant="outlined" className='w-[100%]'/>
-            </Grid>
-            <Grid size={4}>
-              <Button onClick={()=>{handleAddClick()}} variant="contained" sx={{ width:"100%" , height:"100%" }} className={`${titleInput.length === 0 ? 'opacity-30 pointer-events-none' : 'opacity-100'} ${detailsInput.length === 0 ? 'opacity-30 pointer-events-none' : 'opacity-100'}`}>إضافة</Button>
-            </Grid>
-          </Grid>
+          </div>
           {/* End Input + Add Button */}
         </CardContent>
       </Card> : <Card sx={{ minWidth: 275 , maxHeight:"650px" , height:"100%" , overflow:"auto"  }}>
@@ -201,18 +200,17 @@ export default function TodoList() {
           {/* End All Todos */}
           {/* Start Input + Add Button */}
           <div className="inputsFeilds">
-
-          <Grid container spacing={2} direction={'row-reverse'} >
-            <Grid size={4}>
-              <TextField value={titleInput} onChange={(e)=>(setTitleInput(e.target.value))} id="outlined-basic" label="عنوان المهمه" variant="outlined" className='w-[100%]'/>
+            <Grid container spacing={2} direction={'row-reverse'} >
+              <Grid size={4}>
+                <TextField value={titleInput} onChange={(e)=>(setTitleInput(e.target.value))} id="outlined-basic" label="عنوان المهمه" variant="outlined" className='w-[100%]' sx={rtlTextField}/>
+              </Grid>
+              <Grid size={4}>
+                <TextField value={detailsInput} onChange={(e)=>(setDetailsInput(e.target.value))} id="outlined-basic" label="تفاصيل المهمه" variant="outlined" className='w-[100%]' sx={rtlTextField}/>
+              </Grid>
+              <Grid size={4}>
+                <Button onClick={()=>{handleAddClick()}} variant="contained" sx={{ width:"100%" , height:"100%" }} className={`${titleInput.length === 0 ? 'opacity-30 pointer-events-none' : 'opacity-100'} ${detailsInput.length === 0 ? 'opacity-30 pointer-events-none' : 'opacity-100'}`}>إضافة</Button>
+              </Grid>
             </Grid>
-            <Grid size={4}>
-              <TextField value={detailsInput} onChange={(e)=>(setDetailsInput(e.target.value))} id="outlined-basic" label="تفاصيل المهمه" variant="outlined" className='w-[100%]'/>
-            </Grid>
-            <Grid size={4}>
-              <Button onClick={()=>{handleAddClick()}} variant="contained" sx={{ width:"100%" , height:"100%" }} className={`${titleInput.length === 0 ? 'opacity-30 pointer-events-none' : 'opacity-100'} ${detailsInput.length === 0 ? 'opacity-30 pointer-events-none' : 'opacity-100'}`}>إضافة</Button>
-            </Grid>
-          </Grid>
           </div>
           {/* End Input + Add Button */}
         </CardContent>
