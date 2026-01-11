@@ -9,7 +9,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Todo from '../Todo/Todo';
 
 // uniqe id for each Products وهى مكتبة تقوم بعمل uuid خاص بمكتبة 
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { TodosContext } from '../../Context/TodosContext';
 import {v4 as uuidv4} from 'uuid';
 import toast from 'react-hot-toast';
@@ -23,20 +23,35 @@ export default function TodoList() {
   const [detailsInput , setDetailsInput] = useState('');
 
   const [displayTodosType , setDisplayTodosType] = useState('all');
-  // Filteration Arrays
-  const completedTodos = todos.filter((t)=>{
-    return t.isCompleted
-  })
 
   // Filteration Arrays
-  const notCompletedTodos = todos.filter((t)=>{
-    return !t.isCompleted
-  })
+  /*
+    * useMemo()
+      - useMemo => useEffect يٌعاد رندرتها مرة أخرى وتعمتد على شرط معين للتغيير زيها زي ال  completedTodos او تغيير فى اى حاجة تانية ال render  علشان م مع كل  completedVariable يقوم بحفظ آخر قيمة انت طلعتها لل hook عبارة عن 
+      - للكود الموجود بداخلها return علشان كدا لازم نعمل object ممكن تكون رقم أو مصفوفة أو  useMemo القيمة الي بترجع ال
+  */
+  const completedTodos = useMemo(()=>{
+    return todos.filter((t)=>{
+      console.log("Calling Completed Todos");
+      return t.isCompleted
+    })
+    
+  },[todos])
+
+  // Filteration Arrays
+  const notCompletedTodos = useMemo(()=>{
+    return todos.filter((t)=>{
+        console.log("Calling not-Completed Todos");
+        return !t.isCompleted
+      })
+  },[todos])
 
   // todosToBeRenderd => وبعد كدا هتتغير على حسب إختيارك todos علشان نتحكم من خلالة أى الي هيتعرض على الصفحة بناءً على أختيار الزر فى الحالة الطبيعية هتكون بتساوي
   let todosToBeRenderd = todos;
 
+
   if(displayTodosType === "completed"){
+    console.log("Calling Completed Todos");
     todosToBeRenderd = completedTodos
   }else if(displayTodosType === "non-completed"){
     todosToBeRenderd = notCompletedTodos
@@ -121,6 +136,7 @@ export default function TodoList() {
       transform: "translate(0, -9px) scale(0.75)",
     }
   }
+
   return (
     <Container maxWidth="md">
       {todos.length === 0 ? <Card sx={{ minWidth: 275 , maxHeight:"650px" , height:"100%" , overflow:"auto"  }}>
