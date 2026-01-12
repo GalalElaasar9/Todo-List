@@ -12,21 +12,14 @@ import Todo from '../Todo/Todo';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { TodosContext } from '../../Context/TodosContext';
 import {v4 as uuidv4} from 'uuid';
-import toast from 'react-hot-toast';
-// import { FaFilePen } from "react-icons";
 
-import {
-  // Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  DialogContentText 
-  // TextField,
-} from "@mui/material";
+import { Dialog, DialogActions, DialogContent, DialogTitle, DialogContentText } from "@mui/material";
+import { ToastContext } from '../../Context/ToastContext';
+import MySnackbar from '../MySnackbar/MySnackbar';
 
 export default function TodoList() {
-  let {todos , setTodos} = useContext(TodosContext);
+  let { todos , setTodos } = useContext(TodosContext);
+  let { showHideToast , message } = useContext(ToastContext);
 
   const [titleInput , setTitleInput] = useState('');
   const [detailsInput , setDetailsInput] = useState('');
@@ -43,10 +36,9 @@ export default function TodoList() {
   */
   const completedTodos = useMemo(()=>{
     return todos.filter((t)=>{
-      console.log("Calling Completed Todos");
+      // console.log("Calling Completed Todos");
       return t.isCompleted
     })
-    
   },[todos])
 
   // Filteration Arrays
@@ -97,13 +89,11 @@ export default function TodoList() {
 
     // الجديدة todo السابقة وال array ال localStorage هنا هيتضاف فى ال
     localStorage.setItem("todos",JSON.stringify(updatedTodos));
-    toast.success("تم إضافة المهمة بنجاح",{
-      duration:2000,
-      position:"top-right"
-    })
     // newTodo بعد إضافة ال input هنا بنفرغ ال
     setTitleInput('')
     setDetailsInput('')
+
+    showHideToast("تم إضافة المهمة بنجاح")
   }
 
   const rtlTextField = {
@@ -164,10 +154,8 @@ export default function TodoList() {
     localStorage.setItem("todos",JSON.stringify(TodosAfterDelete))
 
     setShowDeleteDialog(false)
-    toast.success("تم حذف المهمة بنجاح",{
-      duration:2000,
-      position:"top-right"
-    })
+    showHideToast("تم حذف المهمة بنجاح")
+    
   }
 
   // ================== End Functions Delete Dialog ==================
@@ -190,12 +178,10 @@ export default function TodoList() {
         return t;
       }
     })
-    toast.success("تم تعديل المهمة بنجاح",{
-      duration:2000,
-      position:"top-right"
-    })
     setTodos(todosAfterEdit);
     setShowUpdateDialog(false);
+    showHideToast("تم تحديث المهمة بنجاح")
+
     // علشان لما أعمل ريفريش يتعرض أخر تعديل update بعد ال todos هنا بحفظ ال
     localStorage.setItem("todos",JSON.stringify(todosAfterEdit))
   }
@@ -208,6 +194,7 @@ export default function TodoList() {
 
   return (
     <>
+      <MySnackbar message={message}/>
       {/* DELETE DIALOG */}
       <Dialog
         open={showDeleteDialog}

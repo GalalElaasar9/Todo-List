@@ -10,20 +10,23 @@ import IconButton from "@mui/material/IconButton";
 import CheckIcon from "@mui/icons-material/Check";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { TodosContext } from "../../Context/TodosContext";
-import toast from "react-hot-toast";
+import { ToastContext } from "../../Context/ToastContext";
 
 export default function Todo({ todo , showDelete , showUpdate }) {
   let { todos, setTodos } = useContext(TodosContext);
+  let { showHideToast , message } = useContext(ToastContext);
 
   function handleCheckClick() {
     const updatedTodos = todos.map((t) => {
         if (t.id === todo.id) {
           if (t.isCompleted === true) {
             t.isCompleted = false;
+            showHideToast("تم حذف المهمة من المهام المنجزة")
           } else {
             t.isCompleted = true;
+            showHideToast("تم إضافة المهمة إلى المهام المنجزة")
           }
           // الكود المختصر
           // t.isCompleted = !t.isCompleted
@@ -31,6 +34,7 @@ export default function Todo({ todo , showDelete , showUpdate }) {
         return t;
       })
     setTodos(updatedTodos);
+    
     localStorage.setItem("todos",JSON.stringify(updatedTodos))
   }
 
