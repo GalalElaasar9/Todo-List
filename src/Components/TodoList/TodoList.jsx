@@ -171,6 +171,23 @@ export default function TodoList() {
 
   // Function handleUpdateConfirm
   function handleUpdateConfirm() {
+    // الى المستخدم بيعدلها حالاً todo بتاع ال id الى نفس ال todo فى السطر دا بقولة هاتلى النسخة القديمة من ال
+
+    /*
+      * find()
+        - وبترجع أول عنصر يحقق الشرط فقط وبعدها تقف Array على عنصر عنصر من ال loop هى عبارة عن دالة بتعمل 
+        - undefind لو مفيش عنصر حقق الشرط بترجع
+      * filter()
+        - موجود فيها كل العناصر الي حققت الشرط Array وبترجع Array على جميع العناصر الموجودة بداخل ال loop هى عبارة عن دالة بتعمل 
+        - [] لو مفيش عنصر حقق الشرط بترجع
+
+    */
+    const oldTodo = todos.find((t)=> t.id === dialogTodo.id);
+
+    if(oldTodo.title === dialogTodo.title && oldTodo.details === dialogTodo.details){
+      setShowUpdateDialog(false);
+      return
+    }
     const todosAfterEdit = todos.map((t)=>{
       if(t.id === dialogTodo.id){
         return {...t , title: dialogTodo.title , details:dialogTodo.details}
