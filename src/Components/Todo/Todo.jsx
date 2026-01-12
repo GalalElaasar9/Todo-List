@@ -16,7 +16,7 @@ import { ToastContext } from "../../Context/ToastContext";
 
 export default function Todo({ todo , showDelete , showUpdate }) {
   let { todos, setTodos } = useContext(TodosContext);
-  let { showHideToast , message } = useContext(ToastContext);
+  let { showHideToast } = useContext(ToastContext);
 
   function handleCheckClick() {
     const updatedTodos = todos.map((t) => {

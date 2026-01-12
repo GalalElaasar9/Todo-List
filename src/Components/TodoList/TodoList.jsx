@@ -382,13 +382,7 @@ export default function TodoList() {
             </div>
             {/* End Input + Add Button */}
           </CardContent>
-          {/* <CardActions>
-            <Button size="small">Learn More</Button>
-          </CardActions> */}
-        </Card>}
-        
-        {/* لو تم الضغط على زر منجز ومكنش فى مهام منجزة alert ظهور */}
-            
+        </Card>}            
       </Container>
     </>
   );
